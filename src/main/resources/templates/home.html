@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<h3>Teste de Mapeamentos many to many</h3>
+
+
+<h4>Listando Anexos -> Correspondências (usando relacionamento mapeando a tabela do meio)</h4>
+<table border="1">
+	<tbody>
+		<tr th:each="anexo : ${anexos}">
+			<td th:text="${anexo.nome}"></td>
+			<td>
+				<table border="1">
+					<tbody>
+						<tr th:each="registro : ${anexo.registrosMovimentos}">
+							<td th:text="${registro.correspondencia.destinatario}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4>Listando Correspondências -> Anexos (usando relacionamento mapeando a tabela do meio)</h4>
+<table border="1">
+	<tbody>
+		<tr th:each="correspondencia : ${correspondencias}">
+			<td th:text="${correspondencia.destinatario}"></td>
+			<td>
+				<table border="1">
+					<tbody>
+						<tr th:each="registro : ${correspondencia.registrosMovimentos}">
+							<td th:text="${registro.anexo.nome}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<h4>Listando Anexos -> Correspondências (usando relacionamento direto - @ManyToMany)</h4>
+<table border="1">
+	<tbody>
+		<tr th:each="anexo : ${anexos}">
+			<td th:text="${anexo.nome}"></td>
+			<td>
+				<table border="1">
+					<tbody>
+						<tr th:each="correspondencia : ${anexo.correspondencias}">
+							<td th:text="${correspondencia.destinatario}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4>Listando Correspondências -> Anexos (usando relacionamento direto - @ManyToMany)</h4>
+<table border="1">
+	<tbody>
+		<tr th:each="correspondencia : ${correspondencias}">
+			<td th:text="${correspondencia.destinatario}"></td>
+			<td>
+				<table border="1">
+					<tbody>
+						<tr th:each="anexo : ${correspondencia.anexos}">
+							<td th:text="${anexo.nome}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+</body>
+	
+</html>
