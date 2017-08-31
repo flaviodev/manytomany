@@ -36,7 +36,7 @@ public class Anexo implements Serializable {
 	private List<RegistroMovimento> registrosMovimentos = new ArrayList<RegistroMovimento>();	
 	
 	
-	// Mapeando diretamente a tabela anexo usar a entidade da tabela meio
+	// Mapeando diretamente a tabela correspondencia
     @ManyToMany(targetEntity = Correspondencia.class, fetch=FetchType.LAZY)
 	@JoinTable(name = "tab_registro_movimento",
 	joinColumns = @JoinColumn(name = "anexo_fk"), // nome da coluna na tabela meio

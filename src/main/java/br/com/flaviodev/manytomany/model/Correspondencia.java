@@ -34,7 +34,7 @@ public class Correspondencia implements Serializable {
 	@OneToMany(mappedBy = "correspondencia") // nome do atributo na entidade da tabela meio	
 	private List<RegistroMovimento> registrosMovimentos = new ArrayList<RegistroMovimento>();	
 	
-	// Mapeando diretamente a tabela anexo usar a entidade da tabela meio
+	// Mapeando diretamente a tabela anexo 
     @ManyToMany(targetEntity = Anexo.class, fetch=FetchType.LAZY)
 	@JoinTable(name = "tab_registro_movimento",
 	joinColumns = @JoinColumn(name = "correspondencia_fk"), // nome da coluna na tabela meio
